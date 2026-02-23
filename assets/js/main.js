@@ -24,6 +24,42 @@ function draw() {
   ctx.fillRect(25, 25, 100, 100);
 
   // =============================
+  // ARCOS (debajo del cuadrado)
+  // =============================
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 3; j++) {
+      ctx.beginPath();
+      const x = 25 + j * 50; // Coordenada x
+      const y = 150 + i * 50; // Coordenada y (debajo del cuadrado)
+      const radius = 20; // Radio del Arco
+      const startAngle = 0; // Punto inicial del Círculo
+      const endAngle = Math.PI + (Math.PI * j) / 2; // Punto final del Círculo
+      const counterclockwise = i % 2 !== 0; // En el sentido de las agujas del reloj o en sentido contrario
+
+      ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
+
+      if (i > 1) {
+        ctx.fill();
+      } else {
+        ctx.stroke();
+      }
+    }
+  }
+
+  // =============================
+  // CURVAS CUADRÁTICAS (al lado de los arcos)
+  // =============================
+  ctx.beginPath();
+  ctx.moveTo(250, 150); // desplazado a la derecha para quedar al lado de los arcos
+  ctx.quadraticCurveTo(200, 150, 200, 187.5);
+  ctx.quadraticCurveTo(200, 225, 225, 225);
+  ctx.quadraticCurveTo(225, 245, 205, 250);
+  ctx.quadraticCurveTo(235, 245, 240, 225);
+  ctx.quadraticCurveTo(300, 225, 300, 187.5);
+  ctx.quadraticCurveTo(300, 150, 250, 150);
+  ctx.stroke();
+
+  // =============================
   // LIMPIEZA INTERNA
   // =============================
   ctx.clearRect(45, 45, 60, 60);
@@ -50,15 +86,12 @@ function draw() {
   // =============================
   // NUEVOS TRIÁNGULOS
   // =============================
-
-  // Triángulo relleno
   ctx.beginPath();
   ctx.moveTo(370, 60);
   ctx.lineTo(450, 60);
   ctx.lineTo(370, 140);
   ctx.fill();
 
-  // Triángulo contorneado
   ctx.beginPath();
   ctx.moveTo(470, 140);
   ctx.lineTo(470, 60);
