@@ -50,7 +50,7 @@ function draw() {
   // CURVAS CUADRÁTICAS (al lado de los arcos)
   // =============================
   ctx.beginPath();
-  ctx.moveTo(250, 150); // desplazado a la derecha para quedar al lado de los arcos
+  ctx.moveTo(250, 150);
   ctx.quadraticCurveTo(200, 150, 200, 187.5);
   ctx.quadraticCurveTo(200, 225, 225, 225);
   ctx.quadraticCurveTo(225, 245, 205, 250);
@@ -58,6 +58,19 @@ function draw() {
   ctx.quadraticCurveTo(300, 225, 300, 187.5);
   ctx.quadraticCurveTo(300, 150, 250, 150);
   ctx.stroke();
+
+  // =============================
+  // CURVAS CÚBICAS (al lado de las cuadráticas)
+  // =============================
+  ctx.beginPath();
+  ctx.moveTo(400, 160); // movido hacia la derecha y más abajo
+  ctx.bezierCurveTo(400, 157, 395, 145, 375, 145);
+  ctx.bezierCurveTo(345, 145, 345, 182.5, 345, 182.5);
+  ctx.bezierCurveTo(345, 200, 365, 222, 400, 240);
+  ctx.bezierCurveTo(435, 222, 455, 200, 455, 182.5);
+  ctx.bezierCurveTo(455, 182.5, 455, 145, 425, 145);
+  ctx.bezierCurveTo(410, 145, 400, 157, 400, 160);
+  ctx.fill();
 
   // =============================
   // LIMPIEZA INTERNA
