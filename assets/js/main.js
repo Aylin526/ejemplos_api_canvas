@@ -16,27 +16,48 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // ======================================
-  // NUEVO CÓDIGO DE ARCO Y CÍRCULO
+  // 1️⃣ RECTÁNGULOS
   // ======================================
+  ctx.fillStyle = "#2dd4bf";
+  ctx.fillRect(25, 25, 100, 100);
 
+  ctx.clearRect(45, 45, 60, 60);
+
+  ctx.strokeStyle = "#111827";
+  ctx.lineWidth = 3;
+  ctx.strokeRect(50, 50, 50, 50);
+
+  // ======================================
+  // 2️⃣ TRIÁNGULO
+  // ======================================
+  ctx.beginPath();
+  ctx.moveTo(200, 100);
+  ctx.lineTo(250, 150);
+  ctx.lineTo(250, 50);
+  ctx.closePath();
+  ctx.fillStyle = "#f97316";
+  ctx.fill();
+
+  // ======================================
+  // 3️⃣ ARCOS MÚLTIPLES
+  // ======================================
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 3; j++) {
       ctx.beginPath();
-      const x = 25 + j * 50; // Coordenada x
-      const y = 25 + i * 50; // Coordenada y
-      const radius = 20; // Radio del Arco
-      const startAngle = 0; // Punto inicial del Círculo
-      const endAngle = Math.PI + (Math.PI * j) / 2; // Punto final del Círculo
-      const counterclockwise = i % 2 !== 0; // Dirección del arco
+      const x = 400 + j * 50; // desplazamos a la derecha para no chocar con figuras anteriores
+      const y = 25 + i * 50;
+      const radius = 20;
+      const startAngle = 0;
+      const endAngle = Math.PI + (Math.PI * j) / 2;
+      const counterclockwise = i % 2 !== 0;
 
       ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
 
       if (i > 1) {
-        ctx.fillStyle = "#2dd4bf";
+        ctx.fillStyle = "#60a5fa"; // azul suave
         ctx.fill();
       } else {
-        ctx.strokeStyle = "#111827";
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#1e3a8a";
         ctx.stroke();
       }
     }
