@@ -13,61 +13,83 @@ function draw() {
   resizeCanvas(canvas, container);
 
   const ctx = canvas.getContext("2d");
+
+  // Limpia todo
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // ======================================
-  // 1️⃣ RECTÁNGULOS
-  // ======================================
+  // =============================
+  // RECTÁNGULO RELLENO
+  // =============================
   ctx.fillStyle = "#2dd4bf";
   ctx.fillRect(25, 25, 100, 100);
 
+  // =============================
+  // LIMPIEZA INTERNA
+  // =============================
   ctx.clearRect(45, 45, 60, 60);
 
+  // =============================
+  // CONTORNO
+  // =============================
   ctx.strokeStyle = "#111827";
   ctx.lineWidth = 3;
   ctx.strokeRect(50, 50, 50, 50);
 
-  // ======================================
-  // 2️⃣ TRIÁNGULO
-  // ======================================
+  // =============================
+  // TRIÁNGULO (Path API)
+  // =============================
   ctx.beginPath();
   ctx.moveTo(200, 100);
   ctx.lineTo(250, 150);
   ctx.lineTo(250, 50);
   ctx.closePath();
+
   ctx.fillStyle = "#f97316";
   ctx.fill();
 
-  // ======================================
-  // 3️⃣ ARCOS MÚLTIPLES
-  // ======================================
-  for (let i = 0; i < 4; i++) {
-    for (let j = 0; j < 3; j++) {
-      ctx.beginPath();
-      const x = 400 + j * 50; // desplazamos a la derecha para no chocar con figuras anteriores
-      const y = 25 + i * 50;
-      const radius = 20;
-      const startAngle = 0;
-      const endAngle = Math.PI + (Math.PI * j) / 2;
-      const counterclockwise = i % 2 !== 0;
+  // =============================
+  // NUEVOS TRIÁNGULOS
+  // =============================
 
-      ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
+  // Triángulo relleno
+  ctx.beginPath();
+  ctx.moveTo(370, 60);
+  ctx.lineTo(450, 60);
+  ctx.lineTo(370, 140);
+  ctx.fill();
 
-      if (i > 1) {
-        ctx.fillStyle = "#60a5fa"; // azul suave
-        ctx.fill();
-      } else {
-        ctx.strokeStyle = "#1e3a8a";
-        ctx.stroke();
-      }
-    }
-  }
+  // Triángulo contorneado
+  ctx.beginPath();
+  ctx.moveTo(470, 140);
+  ctx.lineTo(470, 60);
+  ctx.lineTo(390, 140);
+  ctx.closePath();
+  ctx.stroke();
+
+  // =============================
+  // CARITA (Círculo + Ojos + Boca)
+  // =============================
+  ctx.beginPath();
+  ctx.arc(320, 100, 40, 0, Math.PI * 2, true); // Círculo externo
+  ctx.moveTo(350, 100);
+  ctx.arc(320, 100, 30, 0, Math.PI, false); // Boca
+  ctx.moveTo(310, 85);
+  ctx.arc(305, 85, 4, 0, Math.PI * 2, true); // Ojo izquierdo
+  ctx.moveTo(335, 85);
+  ctx.arc(330, 85, 4, 0, Math.PI * 2, true); // Ojo derecho
+  ctx.stroke();
 }
 
 function initUI() {
-  document.getElementById("year").textContent = new Date().getFullYear();
-  document.getElementById("btnRedraw").addEventListener("click", draw);
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  document
+    .getElementById("btnRedraw")
+    .addEventListener("click", draw);
+
   window.addEventListener("resize", draw);
+
   draw();
 }
 
