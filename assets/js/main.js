@@ -9,33 +9,34 @@ function draw() {
   const container = canvas.parentElement;
 
   if (!canvas.getContext) return;
+
   resizeCanvas(canvas, container);
 
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Configura colores base
-  ctx.fillStyle = "#2dd4bf";
-  ctx.strokeStyle = "#1e293b";
-  ctx.lineWidth = 2;
+  // ======================================
+  // NUEVO CÓDIGO DE ARCO Y CÍRCULO
+  // ======================================
 
-  // Dibuja una cuadrícula de arcos
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 3; j++) {
       ctx.beginPath();
-      const x = 25 + j * 80; // posición X separada
-      const y = 25 + i * 80; // posición Y separada
-      const radius = 30; // radio del arco
-      const startAngle = 0;
-      const endAngle = Math.PI + (Math.PI * j) / 2;
-      const counterclockwise = i % 2 !== 0;
+      const x = 25 + j * 50; // Coordenada x
+      const y = 25 + i * 50; // Coordenada y
+      const radius = 20; // Radio del Arco
+      const startAngle = 0; // Punto inicial del Círculo
+      const endAngle = Math.PI + (Math.PI * j) / 2; // Punto final del Círculo
+      const counterclockwise = i % 2 !== 0; // Dirección del arco
 
       ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
 
-      // Decide si se rellena o solo se traza
       if (i > 1) {
+        ctx.fillStyle = "#2dd4bf";
         ctx.fill();
       } else {
+        ctx.strokeStyle = "#111827";
+        ctx.lineWidth = 2;
         ctx.stroke();
       }
     }
