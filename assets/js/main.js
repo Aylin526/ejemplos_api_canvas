@@ -9,88 +9,43 @@ function draw() {
   const container = canvas.parentElement;
 
   if (!canvas.getContext) return;
-
   resizeCanvas(canvas, container);
 
   const ctx = canvas.getContext("2d");
-
-  // Limpia todo
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // =============================
-  // RECTÁNGULO RELLENO
-  // =============================
+  // Configura colores base
   ctx.fillStyle = "#2dd4bf";
-  ctx.fillRect(25, 25, 100, 100);
-
-  ctx.clearRect(45, 45, 60, 60);
-
-  ctx.strokeStyle = "#111827";
-  ctx.lineWidth = 3;
-  ctx.strokeRect(50, 50, 50, 50);
-
-  // =============================
-  // TRIÁNGULO
-  // =============================
-  ctx.beginPath();
-  ctx.moveTo(200, 100);
-  ctx.lineTo(250, 150);
-  ctx.lineTo(250, 50);
-  ctx.closePath();
-  ctx.fillStyle = "#f97316";
-  ctx.fill();
-
-  // =============================
-  // CARITA CON arc()
-  // =============================
-  ctx.beginPath();
-
-  // Círculo externo
-  ctx.arc(400, 100, 50, 0, Math.PI * 2, true);
-
-  // Boca
-  ctx.moveTo(435, 100);
-  ctx.arc(400, 100, 35, 0, Math.PI, false);
-
-  // Ojo izquierdo
-  ctx.moveTo(390, 90);
-  ctx.arc(385, 90, 5, 0, Math.PI * 2, true);
-
-  // Ojo derecho
-  ctx.moveTo(420, 90);
-  ctx.arc(415, 90, 5, 0, Math.PI * 2, true);
-
   ctx.strokeStyle = "#1e293b";
   ctx.lineWidth = 2;
-  ctx.stroke();
 
-  
-      // Triángulo relleno
-    ctx.beginPath();
-    ctx.moveTo(25, 25);
-    ctx.lineTo(105, 25);
-    ctx.lineTo(25, 105);
-    ctx.fill();
+  // Dibuja una cuadrícula de arcos
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 3; j++) {
+      ctx.beginPath();
+      const x = 25 + j * 80; // posición X separada
+      const y = 25 + i * 80; // posición Y separada
+      const radius = 30; // radio del arco
+      const startAngle = 0;
+      const endAngle = Math.PI + (Math.PI * j) / 2;
+      const counterclockwise = i % 2 !== 0;
 
-    // Triángulo contorneado
-    ctx.beginPath();
-    ctx.moveTo(125, 125);
-    ctx.lineTo(125, 45);
-    ctx.lineTo(45, 125);
-    ctx.closePath();
-    ctx.stroke();
+      ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
+
+      // Decide si se rellena o solo se traza
+      if (i > 1) {
+        ctx.fill();
+      } else {
+        ctx.stroke();
+      }
+    }
+  }
 }
 
 function initUI() {
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
-
-  document
-    .getElementById("btnRedraw")
-    .addEventListener("click", draw);
-
+  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("btnRedraw").addEventListener("click", draw);
   window.addEventListener("resize", draw);
-
   draw();
 }
 
