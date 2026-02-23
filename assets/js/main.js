@@ -29,12 +29,12 @@ function draw() {
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 3; j++) {
       ctx.beginPath();
-      const x = 25 + j * 50; // Coordenada x
-      const y = 150 + i * 50; // Coordenada y (debajo del cuadrado)
-      const radius = 20; // Radio del Arco
-      const startAngle = 0; // Punto inicial del Círculo
-      const endAngle = Math.PI + (Math.PI * j) / 2; // Punto final del Círculo
-      const counterclockwise = i % 2 !== 0; // En el sentido de las agujas del reloj o en sentido contrario
+      const x = 25 + j * 50; 
+      const y = 150 + i * 50; 
+      const radius = 20;
+      const startAngle = 0;
+      const endAngle = Math.PI + (Math.PI * j) / 2;
+      const counterclockwise = i % 2 !== 0;
 
       ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
 
@@ -47,7 +47,7 @@ function draw() {
   }
 
   // =============================
-  // CURVAS CUADRÁTICAS (al lado de los arcos)
+  // CURVAS CUADRÁTICAS
   // =============================
   ctx.beginPath();
   ctx.moveTo(250, 150);
@@ -60,10 +60,10 @@ function draw() {
   ctx.stroke();
 
   // =============================
-  // CURVAS CÚBICAS (al lado de las cuadráticas)
+  // CURVAS CÚBICAS
   // =============================
   ctx.beginPath();
-  ctx.moveTo(400, 160); // movido hacia la derecha y más abajo
+  ctx.moveTo(400, 160);
   ctx.bezierCurveTo(400, 157, 395, 145, 375, 145);
   ctx.bezierCurveTo(345, 145, 345, 182.5, 345, 182.5);
   ctx.bezierCurveTo(345, 200, 365, 222, 400, 240);
@@ -85,7 +85,7 @@ function draw() {
   ctx.strokeRect(50, 50, 50, 50);
 
   // =============================
-  // TRIÁNGULO (Path API)
+  // TRIÁNGULO
   // =============================
   ctx.beginPath();
   ctx.moveTo(200, 100);
@@ -113,16 +113,16 @@ function draw() {
   ctx.stroke();
 
   // =============================
-  // CARITA (Círculo + Ojos + Boca)
+  // CARITA
   // =============================
   ctx.beginPath();
-  ctx.arc(320, 100, 40, 0, Math.PI * 2, true); // Círculo externo
+  ctx.arc(320, 100, 40, 0, Math.PI * 2, true);
   ctx.moveTo(350, 100);
-  ctx.arc(320, 100, 30, 0, Math.PI, false); // Boca
+  ctx.arc(320, 100, 30, 0, Math.PI, false);
   ctx.moveTo(310, 85);
-  ctx.arc(305, 85, 4, 0, Math.PI * 2, true); // Ojo izquierdo
+  ctx.arc(305, 85, 4, 0, Math.PI * 2, true);
   ctx.moveTo(335, 85);
-  ctx.arc(330, 85, 4, 0, Math.PI * 2, true); // Ojo derecho
+  ctx.arc(330, 85, 4, 0, Math.PI * 2, true);
   ctx.stroke();
 }
 
